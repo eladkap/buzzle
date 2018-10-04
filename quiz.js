@@ -50,7 +50,6 @@ class Quiz{
       else{
         x = random(SCREEN_WIDTH);
         y = random(SCREEN_HEIGHT);
-        // velocity = createVector(0, 0);
         velocity = createVector(random(-this.level * 2, this.level * 2), random(-this.level * 2, this.level * 2));
         movement = 3;
       }

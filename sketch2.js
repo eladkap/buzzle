@@ -1,45 +1,6 @@
 const SCREEN_WIDTH = 400;
 const SCREEN_HEIGHT = 600;
 
-/* Bubble */
-const BUBBLE_SPEED = 10;
-const BUBBLE_RADIUS = 15;
-const BUBBLES_NUM = 5;
-const BUBBLE_MIN_SPEED = 0.2;
-const BUBBLE_MAX_SPEED = 1;
-
-/* Ship Rocket */
-const SHIP_ROCKET_RADIUS = 2;
-const SHIP_ROCKET_SPEED = 10;
-
-/* Ship */
-const SHIP_LEN = 20;
-const SHIP_ACC = 0.2;
-const MAX_SPEED = 5;
-const ROTATE_ACC = 0.1;
-const MAX_ROTATE = 1;
-const SHIP_FRICTION = 0.95;
-const SHIP_SLOWDOWN = 0.02;
-
-
-// DB data
-// var db_quizzes_cars = [];
-var db_quizzes_cars = ['4,Audi,text,2,cars,1,Audi-logo,Mercedes-Benz-logo,Infiniti-logo,Jaguar-logo,Hyundai-logo',
-											'5,Volkswagen,text,2,cars,1,Volkswagen-logo,Mercedes-Benz-logo,Toyota-logo,Lexus-logo',
-											'6,Ferrari,text,2,cars,1,Ferrari-logo-hard,Porsche-logo-hard,Nissan-logo-hard,Lamborghini-logo-hard'];
-
-// var db_quizzes_companies = ['4,amazon-logo-hard,img,2,companies,Amazon,Intel,UPS,AT&T',
-// 														];
-
-// var db_quizzes_flags = [];
-
-var db_quizzes_flags = ['1,Brazil,text,1,flags,1,br,co,ve,ca,ar,pa',
-									'2,Sweden,text,1,flags,1,se,no,fi,is,dk',
-									'3,Finland,text,2,flags,1,fi,dk,no,is,ie,es,pt'];
-
-var db_quizzes = db_quizzes_flags.concat(db_quizzes_cars);
-
-// end of DB data
 
 var gameType = 2;
 
@@ -239,8 +200,10 @@ function checkHits(){
 						console.log('Good');
 						score += 10;
 						currQuiz.bubbles.splice(i, 1);
-						finishQuiz();
-
+						currQuiz.rightAnswersNum--;
+						if (currQuiz.rightAnswersNum == 0){
+							finishQuiz();
+						}
 						return;
 					}
 					else{
@@ -285,5 +248,6 @@ function keyPressed(){
 	}
 	if (key === ' '){
 		ship.fireRocket();
+		score -= SHOOT_PENALTY_PTS;
 	}
 }

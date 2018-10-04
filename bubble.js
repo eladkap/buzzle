@@ -7,7 +7,6 @@ class Bubble{
     this.contentType = contentType;
     this.text = text;
     this.img = img;
-    // this.life = 100;
     this.toDelete = false;
     this.movement = movement;
     this.bubbleVisible = bubbleVisible;

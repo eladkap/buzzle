@@ -1,41 +1,6 @@
 const SCREEN_WIDTH = 400;
 const SCREEN_HEIGHT = 600;
 
-/* Bubble */
-const BUBBLE_SPEED = 10;
-const BUBBLE_RADIUS = 20;
-const BUBBLES_NUM = 5;
-const BUBBLE_MIN_SPEED = 0.2;
-const BUBBLE_MAX_SPEED = 1;
-
-/* Cannon */
-const CANNON_WIDTH = 40;
-const MAX_SPEED = 7;
-const ACC_RATE = 0.2;
-const SLOWDOWN_RATE = 0.02;
-
-/* Rocket */
-const ROCKET_RADIUS = 1;
-const ROCKET_SPEED = 5;
-
-// DB data
-// var db_quizzes_cars = [];
-var db_quizzes_cars = ['4,Audi,text,2,cars,1,Audi-logo,Mercedes-Benz-logo,Infiniti-logo,Jaguar-logo,Hyundai-logo',
-											'5,Volkswagen,text,2,cars,1,Volkswagen-logo,Mercedes-Benz-logo,Toyota-logo,Lexus-logo',
-											'6,Ferrari,text,2,cars,1,Ferrari-logo-hard,Porsche-logo-hard,Nissan-logo-hard,Lamborghini-logo-hard'];
-
-// var db_quizzes_companies = ['4,amazon-logo-hard,img,2,companies,Amazon,Intel,UPS,AT&T',
-// 														];
-
-// var db_quizzes_flags = [];
-
-var db_quizzes_flags = ['1,Brazil,text,1,flags,1,br,co,ve,ca,ar,pa',
-									'2,Sweden,text,1,flags,1,se,no,fi,is,dk',
-									'3,Finland,text,2,flags,1,fi,dk,no,is,ie,es,pt'];
-
-var db_quizzes = db_quizzes_flags.concat(db_quizzes_cars);
-
-// end of DB data
 
 var gameType = 1;
 
@@ -215,15 +180,17 @@ function checkHits(){
 				if (currQuiz.bubbles[i].life <= 0){
 					if (currQuiz.checkAnswer(currQuiz.bubbles[i])){
 						console.log('Good');
-						score += 10;
+						score += RIGHT_ANSWER_PTS;
 						currQuiz.bubbles.splice(i, 1);
-						finishQuiz();
-
+						currQuiz.rightAnswersNum--;
+						if (currQuiz.rightAnswersNum == 0){
+							finishQuiz();
+						}
 						return;
 					}
 					else{
 						console.log('Wrong');
-						score -= 5;
+						score -= WRONG_ANSWER_PTS;
 					}
 				}
 				return;
@@ -274,6 +241,6 @@ function keyPressed(){
 	}
 	if (key === ' '){
 		cannon.fireRocket();
-		score--;
+		score -= SHOOT_PENALTY_PTS;
 	}
 }

@@ -14,9 +14,6 @@ class Ship{
     push();
     translate(this.pos.x, this.pos.y);
     rotate(this.angle + PI / 2);
-    // strokeWeight(1);
-    // stroke(200); // 0,206,209
-    // fill(0,206,209);
     fill(200);
     triangle(-this.r / 2, this.r / 2, this.r / 2, this.r / 2, 0, -this.r);
     pop();
@@ -52,7 +49,7 @@ class Ship{
     if (this.isBoosting && this.velocity.mag() < MAX_BOOST_SPEED){
       this.velocity.add(force);
     }
-    else if (this.velocity.mag() < MAX_SPEED){
+    else if (this.velocity.mag() < MAX_SHIP_SPEED){
       this.velocity.add(force);
     }
   }

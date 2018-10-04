@@ -16,7 +16,7 @@ class Cannon{
   }
 
   accelerate(dir){
-    if (abs(this.speed) < MAX_SPEED){
+    if (abs(this.speed) < MAX_CANNON_SPEED){
       this.speed += ACC_RATE * dir;
     }
   }
